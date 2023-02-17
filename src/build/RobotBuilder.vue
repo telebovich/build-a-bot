@@ -2,16 +2,18 @@
   <div>
     <div class="top-row">
       <div class="top part">
-        <img v-bind:src="availableParts.heads[0].src" title="head" alt="head" />
-        <button class="prev-selector">&#9668;</button>
-        <button class="next-selector">&#9658;</button>
+        <img v-bind:src="availableParts.heads[selectedHeadIndex].src" title="head" alt="head" />
+        <button v-on:click="selectPreviousHead()" class="prev-selector">&#9668;</button>
+        <button v-on:click="selectNextHead()" class="next-selector">&#9658;</button>
       </div>
     </div>
     <div class="middle-row">
       <div class="left part">
-        <img v-bind:src="availableParts.arms[0].src" title="left arm" alt="left arm" />
+        <img v-bind:src="availableParts.arms[selectedLeftHandIndex].src"
+          title="left arm"
+          alt="left arm" />
         <button class="prev-selector">&#9650;</button>
-        <button class="next-selector">&#9660;</button>
+        <button v-on:click="selectNextLeftHand()" class="next-selector">&#9660;</button>
       </div>
       <div class="center part">
         <img v-bind:src="availableParts.torsos[0].src" title="left arm" alt="left arm"/>
@@ -35,16 +37,60 @@
 </template>
 
 <script lang="ts">
+import { interfaceTypeAnnotation } from '@babel/types';
+import { defineComponent } from 'vue';
 import availableParts from '../data/parts';
 
-export default {
+function getPreviousValidIndex(index: number, length: number): number {
+  const deprecatedIndex = index - 1;
+  return deprecatedIndex < 0 ? length - 1 : deprecatedIndex;
+}
+
+function getNextValidIndex(index: number, length: number): number {
+  const incrementedIndex = index + 1;
+  return incrementedIndex > length - 1 ? 0 : incrementedIndex;
+}
+
+export default defineComponent({
   name: 'RobotBuilder',
   data() {
     return {
       availableParts,
+      selectedHeadIndex: 0,
+      selectedLeftHandIndex: 0,
+      selectedRightHandIndex: 0,
     };
   },
-};
+  methods: {
+    selectNextHead() {
+      this.selectedHeadIndex = getNextValidIndex(
+        this.selectedHeadIndex,
+        availableParts.heads.length,
+      );
+    },
+    selectPreviousHead() {
+      this.selectedHeadIndex = getPreviousValidIndex(
+        this.selectedHeadIndex,
+        availableParts.heads.length,
+      );
+    },
+    selectNextLeftHand() {
+      this.selectedLeftHandIndex = getNextValidIndex(
+        this.selectedLeftHandIndex,
+        availableParts.arms.length,
+      );
+    },
+    selectPreviousLeftHand() {
+      console.log('Hi');
+    },
+    selectNextRightHand() {
+      console.log('Hi');
+    },
+    selectPreviousRightHand() {
+      console.log('Hi');
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">
