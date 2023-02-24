@@ -9,10 +9,10 @@
     </div>
     <div class="middle-row">
       <div class="left part">
-        <img v-bind:src="availableParts.arms[selectedLeftHandIndex].src"
+        <img v-bind:src="availableParts.arms[selectedLeftArmIndex].src"
           title="left arm"
           alt="left arm" />
-        <button class="prev-selector">&#9650;</button>
+        <button v-on:click="selectPreviousLeftHand()" class="prev-selector">&#9650;</button>
         <button v-on:click="selectNextLeftHand()" class="next-selector">&#9660;</button>
       </div>
       <div class="center part">
@@ -57,8 +57,8 @@ export default defineComponent({
     return {
       availableParts,
       selectedHeadIndex: 0,
-      selectedLeftHandIndex: 0,
-      selectedRightHandIndex: 0,
+      selectedLeftArmIndex: 0,
+      selectedRightArmIndex: 0,
     };
   },
   methods: {
@@ -75,13 +75,16 @@ export default defineComponent({
       );
     },
     selectNextLeftHand() {
-      this.selectedLeftHandIndex = getNextValidIndex(
-        this.selectedLeftHandIndex,
+      this.selectedLeftArmIndex = getNextValidIndex(
+        this.selectedLeftArmIndex,
         availableParts.arms.length,
       );
     },
     selectPreviousLeftHand() {
-      console.log('Hi');
+      this.selectedLeftArmIndex = getPreviousValidIndex(
+        this.selectedLeftArmIndex,
+        availableParts.arms.length,
+      );
     },
     selectNextRightHand() {
       console.log('Hi');
