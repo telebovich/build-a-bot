@@ -21,9 +21,12 @@
         <button class="next-selector">&#9658;</button>
       </div>
       <div class="right part">
-        <img v-bind:src="availableParts.arms[0].src"  title="left arm" alt="left arm" />
-        <button class="prev-selector">&#9650;</button>
-        <button class="next-selector">&#9660;</button>
+        <img
+          v-bind:src="availableParts.arms[selectedRightArmIndex].src"
+          title="left arm"
+          alt="left arm" />
+        <button v-on:click="selectPreviousRightArm()" class="prev-selector">&#9650;</button>
+        <button v-on:click="selectNextRightArm()" class="next-selector">&#9660;</button>
       </div>
     </div>
     <div class="bottom-row">
@@ -37,7 +40,6 @@
 </template>
 
 <script lang="ts">
-import { interfaceTypeAnnotation } from '@babel/types';
 import { defineComponent } from 'vue';
 import availableParts from '../data/parts';
 
@@ -59,6 +61,7 @@ export default defineComponent({
       selectedHeadIndex: 0,
       selectedLeftArmIndex: 0,
       selectedRightArmIndex: 0,
+      selectedTorsoIndex: 0,
     };
   },
   methods: {
@@ -86,11 +89,17 @@ export default defineComponent({
         availableParts.arms.length,
       );
     },
-    selectNextRightHand() {
-      console.log('Hi');
+    selectNextRightArm() {
+      this.selectedRightArmIndex = getNextValidIndex(
+        this.selectedRightArmIndex,
+        availableParts.arms.length,
+      );
     },
-    selectPreviousRightHand() {
-      console.log('Hi');
+    selectPreviousRightArm() {
+      this.selectedRightArmIndex = getPreviousValidIndex(
+        this.selectedRightArmIndex,
+        availableParts.arms.length,
+      );
     },
   },
 });
