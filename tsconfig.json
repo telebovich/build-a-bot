@@ -13,6 +13,8 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "isolatedModules": true,
+    "noImplicitThis": false, // Default is true, can't make typing work correctly with this
     "types": [
       "webpack-env",
       "mocha",
