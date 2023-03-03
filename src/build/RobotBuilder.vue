@@ -34,9 +34,12 @@
     </div>
     <div class="bottom-row">
       <div class="bottom part">
-        <img v-bind:src="availableParts.bases[0].src"  title="left arm" alt="left arm" />
-        <button class="prev-selector">&#9668;</button>
-        <button class="next-selector">&#9658;</button>
+        <img
+          v-bind:src="availableParts.bases[selectedBaseIndex].src"
+          title="left arm"
+          alt="left arm" />
+        <button v-on:click="selectPreviousBase()" class="prev-selector">&#9668;</button>
+        <button v-on:click="selectNextBase()" class="next-selector">&#9658;</button>
       </div>
     </div>
   </div>
@@ -65,6 +68,7 @@ export default defineComponent({
       selectedLeftArmIndex: 0,
       selectedRightArmIndex: 0,
       selectedTorsoIndex: 0,
+      selectedBaseIndex: 0,
     };
   },
   methods: {
@@ -114,6 +118,18 @@ export default defineComponent({
       this.selectedTorsoIndex = getNextValidIndex(
         this.selectedTorsoIndex,
         availableParts.torsos.length,
+      );
+    },
+    selectPreviousBase() {
+      this.selectedBaseIndex = getPreviousValidIndex(
+        this.selectedBaseIndex,
+        availableParts.bases.length,
+      );
+    },
+    selectNextBase() {
+      this.selectedBaseIndex = getNextValidIndex(
+        this.selectedBaseIndex,
+        availableParts.bases.length,
       );
     },
   },
