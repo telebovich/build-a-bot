@@ -14,7 +14,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "isolatedModules": true,
-    "noImplicitThis": false, // Default is true, can't make typing work correctly with this
+    "noImplicitThis": false, // Default is true, can't make typing work correctly with this enabled
     "types": [
       "webpack-env",
       "mocha",
