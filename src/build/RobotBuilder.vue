@@ -2,7 +2,7 @@
   <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add To Cart</button>
     <div class="top-row">
-      <div class="top part">
+      <div class="top part" :style="headBorderStyle">
         <div class="robot-name">
           {{ selectedRobot.head.title }}
           <span v-if="selectedRobot.head.onSale" class="sale">Sale!</span>
@@ -95,6 +95,11 @@ export default defineComponent({
     };
   },
   computed: {
+    headBorderStyle() {
+      return {
+        border: this.selectedRobot.head.onSale ? '3px solid red' : '3px solid #aaa',
+      };
+    },
     selectedRobot() {
       return {
         head: availableParts.heads[this.selectedHeadIndex],
@@ -314,5 +319,11 @@ export default defineComponent({
 
 td, th {
   text-align: left;
+  padding: 5px;
+  padding-right: 20px;
+}
+
+.cost {
+  text-align: right;
 }
 </style>

@@ -36,7 +36,9 @@ body {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+</style>
 
+<style scoped lang="scss">
 main {
   margin: 0 auto;
   padding: 30px;
