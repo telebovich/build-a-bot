@@ -70,6 +70,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import availableParts from '../data/parts';
+import createdHookMixin from './created-hook-mixin';
 
 function getPreviousValidIndex(index: number, length: number): number {
   const deprecatedIndex = index - 1;
@@ -83,6 +84,7 @@ function getNextValidIndex(index: number, length: number): number {
 
 export default defineComponent({
   name: 'RobotBuilder',
+  mixins: [createdHookMixin],
   data() {
     return {
       availableParts,
