@@ -76,7 +76,6 @@ export default defineComponent({
             this.cart.push({ ...robot, cost });
         },
     },
-    components: { PartSelector }
 });
 </script>
 
