@@ -2,7 +2,7 @@
   <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add To Cart</button>
     <div class="top-row">
-      <PartSelector />
+      <PartSelector :part="availableParts.heads"/>
     </div>
     <div class="middle-row">
       <PartSelector />
