@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed } from 'vue';
 import useSearch from './useSearch';
 import useFilters from './useFilters';
