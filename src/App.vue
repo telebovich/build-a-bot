@@ -10,18 +10,22 @@
     </nav>
   </header>
   <main>
-    <HomePage />
+    <!-- SearchComponent / -->
+    <RobotBuilder />
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HomePage from './components/HomePage.vue';
+// import HomePage from './home/HomePage.vue';
+import RobotBuilder from './build/RobotBuilder.vue';
+// import SearchComponent from './search/SearchComponent.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HomePage,
+    RobotBuilder,
+    // SearchComponent,
   },
 });
 </script>
@@ -35,7 +39,9 @@ body {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+</style>
 
+<style scoped lang="scss">
 main {
   margin: 0 auto;
   padding: 30px;
@@ -49,19 +55,21 @@ header {
   width: 1084px;
   margin: 0 auto;
 }
+
 ul {
   padding: 3px;
   display: flex;
 }
+
 .nav-item {
   display: inline-block;
   padding: 5px 10px;
   font-size: 22px;
   border-right: 1px solid #bbb;
 }
+
 .logo {
   vertical-align: middle;
   height: 30px;
 }
-
 </style>
