@@ -2,15 +2,15 @@
   <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add To Cart</button>
     <div class="top-row">
-      <PartSelector :part="availableParts.heads"/>
+      <PartSelector :parts="availableParts.heads" position="top"/>
     </div>
     <div class="middle-row">
-      <PartSelector />
-      <PartSelector />
-      <PartSelector />
+      <PartSelector :parts="availableParts.arms" position="left"/>
+      <PartSelector :parts="availableParts.torsos" position="middle"/>
+      <PartSelector :parts="availableParts.arms" position="right"/>
     </div>
     <div class="bottom-row">
-      <PartSelector />
+      <PartSelector :parts="availableParts.bases" position="bottom"/>
     </div>
     <div>
       <h1>Cart</h1>
