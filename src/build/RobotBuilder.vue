@@ -2,15 +2,15 @@
   <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add To Cart</button>
     <div class="top-row">
-      <PartSelector :parts="availableParts.heads" position="top"/>
+      <PartSelector :parts="availableParts.heads" position="top" />
     </div>
     <div class="middle-row">
-      <PartSelector :parts="availableParts.arms" position="left"/>
-      <PartSelector :parts="availableParts.torsos" position="middle"/>
-      <PartSelector :parts="availableParts.arms" position="right"/>
+      <PartSelector :parts="availableParts.arms" position="left" />
+      <PartSelector :parts="availableParts.torsos" position="middle" />
+      <PartSelector :parts="availableParts.arms" position="right" />
     </div>
     <div class="bottom-row">
-      <PartSelector :parts="availableParts.bases" position="bottom"/>
+      <PartSelector :parts="availableParts.bases" position="bottom" />
     </div>
     <div>
       <h1>Cart</h1>
@@ -39,43 +39,43 @@ import createdHookMixin from './created-hook-mixin';
 import PartSelector from './PartSelector.vue';
 
 export default defineComponent({
-    name: "RobotBuilder",
-    components: { PartSelector },
-    mixins: [createdHookMixin],
-    data() {
-        return {
-            availableParts,
-            cart: [],
-            selectedRobot: {
-                head: {},
-                leftArm: {},
-                torso: {},
-                rightArm: {},
-                base: {},
-            },
-        };
+  name: 'RobotBuilder',
+  components: { PartSelector },
+  mixins: [createdHookMixin],
+  data() {
+    return {
+      availableParts,
+      cart: [],
+      selectedRobot: {
+        head: {},
+        leftArm: {},
+        torso: {},
+        rightArm: {},
+        base: {},
+      },
+    };
+  },
+  computed: {
+    saleBorderClass() {
+      return this.selectedRobot.head.onSale ? 'sale-border' : '';
     },
-    computed: {
-        saleBorderClass() {
-            return this.selectedRobot.head.onSale ? "sale-border" : "";
-        },
-        headBorderStyle() {
-            return {
-                border: this.selectedRobot.head.onSale ? "3px solid red" : "3px solid #aaa",
-            };
-        },
+    headBorderStyle() {
+      return {
+        border: this.selectedRobot.head.onSale ? '3px solid red' : '3px solid #aaa',
+      };
     },
-    methods: {
-        addToCart() {
-            const robot = this.selectedRobot;
-            const cost = robot.head.cost
-                + robot.leftArm.cost
-                + robot.torso.cost
-                + robot.rightArm.cost
-                + robot.base.cost;
-            this.cart.push({ ...robot, cost });
-        },
+  },
+  methods: {
+    addToCart() {
+      const robot = this.selectedRobot;
+      const cost = robot.head.cost
+        + robot.leftArm.cost
+        + robot.torso.cost
+        + robot.rightArm.cost
+        + robot.base.cost;
+      this.cart.push({ ...robot, cost });
     },
+  },
 });
 </script>
 
@@ -212,7 +212,8 @@ export default defineComponent({
   font-size: 16px;
 }
 
-td, th {
+td,
+th {
   text-align: left;
   padding: 5px;
   padding-right: 20px;

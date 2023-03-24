@@ -41,7 +41,7 @@ import useFilters from './useFilters';
 import usePagination from './usePagination';
 
 export default {
-  setup(props) {
+  setup(props: any) {
     const { searchResults, search } = useSearch(props.searchTerm);
 
     const {

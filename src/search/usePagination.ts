@@ -1,6 +1,6 @@
 import { ref, computed, onMounted } from 'vue';
 
-export default function usePagination(filteredSearchResults) {
+export default function usePagination(filteredSearchResults: any) {
   const pageSize = 5;
   const currentPage = ref(1);
   const nextPage = () => { currentPage.value += 1; };
