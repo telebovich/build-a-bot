@@ -1,6 +1,6 @@
 <template>
   <div class="part" :class="position">
-    <img :src="selectedPart.src" title="arm" alt="arm"/>
+    <img :src="selectedPart.src" title="arm" alt="arm" />
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
     <span class="sale" v-show="selectedPart.onSale">Sale!</span>
@@ -20,7 +20,14 @@ function getNextValidIndex(index: number, length: number) {
 }
 
 export default {
-  props: ['parts', 'position'],
+  props: {
+    parts: { type: Array, required: true },
+    position: {
+      type: String,
+      required: true,
+      validator: (value: string) => ['left', 'right', 'top', 'bottom', 'center'].includes(value),
+    },
+  },
   data() {
     return { selectedPartIndex: 0 };
   },
@@ -180,4 +187,5 @@ export default {
 
 .highlight {
   border: 1px solid red;
-}</style>
+}
+</style>
