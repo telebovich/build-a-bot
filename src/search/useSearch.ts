@@ -3,10 +3,10 @@ import parts from '../data/parts';
 
 const allParts = [...parts.heads, ...parts.arms, ...parts.torsos, ...parts.bases];
 
-export default function useSearch(originalSearchTerm) {
-  const results = ref([]);
+export default function useSearch(originalSearchTerm: string) {
+  const results = ref<Array<any>>([]);
 
-  const searchInventory = (searchTerm) => {
+  const searchInventory = (searchTerm: string) => {
     let searchResults;
     const term = searchTerm || originalSearchTerm;
 
