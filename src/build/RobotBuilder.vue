@@ -1,19 +1,21 @@
 <template>
   <div class="content">
     <div class="preview">
-      <div class="preview-content">
-        <div class="top-row">
-          <img :src="selectedRobot.head.src" alt="robot head"/>
+      <CollapsibleSection>
+        <div class="preview-content">
+          <div class="top-row">
+            <img :src="selectedRobot.head.src" alt="robot head"/>
+          </div>
+          <div class="middle-row">
+            <img :src="selectedRobot.leftArm.src" class="rotate-left" alt="robot left arm"/>
+            <img :src="selectedRobot.torso.src" alt="robot torso"/>
+            <img :src="selectedRobot.rightArm.src" class="rotate-right" alt="robot right arm"/>
+          </div>
+          <div class="bottom-row">
+            <img :src="selectedRobot.base.src" alt="robot base"/>
+          </div>
         </div>
-        <div class="middle-row">
-          <img :src="selectedRobot.leftArm.src" class="rotate-left" alt="robot left arm"/>
-          <img :src="selectedRobot.torso.src" alt="robot torso"/>
-          <img :src="selectedRobot.rightArm.src" class="rotate-right" alt="robot right arm"/>
-        </div>
-        <div class="bottom-row">
-          <img :src="selectedRobot.base.src" alt="robot base"/>
-        </div>
-      </div>
+      </CollapsibleSection>
       <button class="add-to-cart" @click="addToCart()">Add To Cart</button>
     </div>
     <div class="top-row">
@@ -59,13 +61,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import CollapsibleSection from '@/shared/CollapsibleSection.vue';
 import availableParts from '../data/parts';
 import createdHookMixin from './created-hook-mixin';
 import PartSelector from './PartSelector.vue';
 
 export default defineComponent({
   name: 'RobotBuilder',
-  components: { PartSelector },
+  components: { PartSelector, CollapsibleSection },
   mixins: [createdHookMixin],
   data() {
     return {
