@@ -22,10 +22,7 @@ export default defineComponent({
   },
   methods: {
     handleKeyDown(e: KeyboardEvent): any {
-      // Not working
-      if (e.key === 't') return this.toggle();
-
-      return 0;
+      // TODO: Fill with some meaningfull code
     },
     toggle(): void {
       this.open = !this.open;
