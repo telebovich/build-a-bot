@@ -34,14 +34,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed } from 'vue';
 import useSearch from './useSearch';
 import useFilters from './useFilters';
 import usePagination from './usePagination';
 
 export default {
-  setup(props) {
+  setup(props: any) {
     const { searchResults, search } = useSearch(props.searchTerm);
 
     const {

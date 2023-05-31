@@ -1,8 +1,8 @@
 import { ref, computed, onMounted } from 'vue';
 
-function filterResults(results, filters) {
-  return results.value.filter((part) => filters.value.every(
-    (filter) => {
+function filterResults(results: any, filters: any) {
+  return results.value.filter((part: any) => filters.value.every(
+    (filter: any) => {
       const filterField = Object.keys(filter)[0];
       const filterValue = filter[filterField];
       return part[filterField] === filterValue;
@@ -10,10 +10,10 @@ function filterResults(results, filters) {
   ));
 }
 
-export default function useFilters(searchResults) {
-  const filters = ref([]);
+export default function useFilters(searchResults: any) {
+  const filters = ref<Array<any>>([]);
 
-  const applyFilters = (filter) => filters.value.push(filter);
+  const applyFilters = (filter:any) => filters.value.push(filter);
   const clearFilters = () => { filters.value = []; };
 
   onMounted(() => console.log('Mounted: useFilters'));
