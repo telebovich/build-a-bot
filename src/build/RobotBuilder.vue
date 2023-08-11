@@ -60,52 +60,49 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 import CollapsibleSection from '@/shared/CollapsibleSection.vue';
 import availableParts from '../data/parts';
-import createdHookMixin from './created-hook-mixin';
 import PartSelector from './PartSelector.vue';
 
-export default defineComponent({
-  name: 'RobotBuilder',
-  components: { PartSelector, CollapsibleSection },
-  mixins: [createdHookMixin],
-  data() {
-    return {
-      availableParts,
-      cart: [],
-      selectedRobot: {
-        head: {},
-        leftArm: {},
-        torso: {},
-        rightArm: {},
-        base: {},
-      },
-    };
-  },
-  computed: {
-    saleBorderClass() {
-      return this.selectedRobot.head.onSale ? 'sale-border' : '';
-    },
-    headBorderStyle() {
-      return {
-        border: this.selectedRobot.head.onSale ? '3px solid red' : '3px solid #aaa',
-      };
-    },
-  },
-  methods: {
-    addToCart() {
-      const robot = this.selectedRobot;
-      const cost = robot.head.cost
-        + robot.leftArm.cost
-        + robot.torso.cost
-        + robot.rightArm.cost
-        + robot.base.cost;
-      this.cart.push({ ...robot, cost });
-    },
-  },
+const cart: any[] = [];
+const selectedRobot = {
+  head: {},
+  leftArm: {},
+  torso: {},
+  rightArm: {},
+  base: {},
+};
+
+const selectedBorderClass = computed(() => {
+  let retVal;
+  if (selectedRobot.head.onSale) {
+    retVal = 'sale-border';
+  } else {
+    retVal = '';
+  }
+  return retVal;
 });
+const headBorderStyle = computed(() => {
+  let retVal;
+  if (selectedRobot.head.onSale) {
+    retVal = { border: '3px solid red' };
+  } else {
+    retVal = { border: '3px solid #aaa' };
+  }
+  return retVal;
+});
+
+const addToCart = () => {
+  const robot = selectedRobot;
+  const cost = robot.head.cost
+    + robot.leftArm.cost
+    + robot.torso.cost
+    + robot.rightArm.cost
+    + robot.base.cost;
+  cart.push({ ...robot, cost });
+};
 </script>
 
 <style scoped lang="scss">
