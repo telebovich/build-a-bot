@@ -10,22 +10,16 @@
     </nav>
   </header>
   <main>
-    <!-- SearchComponent / -->
-    <RobotBuilder />
+    <router-view />
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-// import HomePage from './home/HomePage.vue';
-import RobotBuilder from './build/RobotBuilder.vue';
-// import SearchComponent from './search/SearchComponent.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    RobotBuilder,
-    // SearchComponent,
   },
 });
 </script>

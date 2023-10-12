@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@babel/types": "^7.20.7",
-    "vue": "^3.2.13"
+    "vue": "^3.2.13",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",
