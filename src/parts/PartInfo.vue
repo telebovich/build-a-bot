@@ -8,14 +8,14 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 import parts from '@/data/parts';
 
-const part = computed(() => {
-  const route = useRoute();
+const props = defineProps([ 'partType', 'id' ])
 
-  const partType = route.params.partType;
-  const id = route.params.id;
+const part = computed(() => {
+
+  const partType = props.partType;
+  const id = props.id;
 
   return parts[partType].find((part: any) => part.id === +id);
 });
