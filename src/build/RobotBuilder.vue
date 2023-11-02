@@ -40,23 +40,6 @@
         position="bottom"
         @partSelected="part => selectedRobot.base = part"/>
     </div>
-    <div>
-      <h1>Cart</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Robot</th>
-            <th class="cost">Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(robot, index) in cart" :key="index">
-            <td>{{ robot.head.title }}</td>
-            <td class="cost">{{ robot.cost }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </template>
 
@@ -66,7 +49,10 @@ import CollapsibleSection from '@/shared/CollapsibleSection.vue';
 import availableParts from '../data/parts';
 import PartSelector from './PartSelector.vue';
 
-const cart: any[] = [];
+import { useCartStore } from '../stores/cartStore';
+
+const cartStore = useCartStore();
+
 const selectedRobot = {
   head: {},
   leftArm: {},
@@ -101,7 +87,7 @@ const addToCart = () => {
     + robot.torso.cost
     + robot.rightArm.cost
     + robot.base.cost;
-  cart.push({ ...robot, cost });
+  cartStore.cart.push({ ...robot, cost });
 };
 </script>
 
