@@ -1,42 +1,42 @@
 <template>
-  <div class="content">
+  <div v-if="partsStore.parts" class="content">
     <div class="part-info" id="partInfo" ></div>
     <div class="preview">
       <CollapsibleSection>
         <div class="preview-content">
           <div class="top-row">
-            <img :src="selectedRobot.head.src" alt="robot head"/>
+            <img :src="selectedRobot.head.imageUrl" alt="robot head"/>
           </div>
           <div class="middle-row">
-            <img :src="selectedRobot.leftArm.src" class="rotate-left" alt="robot left arm"/>
-            <img :src="selectedRobot.torso.src" alt="robot torso"/>
-            <img :src="selectedRobot.rightArm.src" class="rotate-right" alt="robot right arm"/>
+            <img :src="selectedRobot.leftArm.imageUrl" class="rotate-left" alt="robot left arm"/>
+            <img :src="selectedRobot.torso.imageUrl" alt="robot torso"/>
+            <img :src="selectedRobot.rightArm.imageUrl" class="rotate-right" alt="robot right arm"/>
           </div>
           <div class="bottom-row">
-            <img :src="selectedRobot.base.src" alt="robot base"/>
+            <img :src="selectedRobot.base.imageUrl" alt="robot base"/>
           </div>
         </div>
       </CollapsibleSection>
       <button class="add-to-cart" @click="addToCart()">Add To Cart</button>
     </div>
     <div class="top-row">
-      <PartSelector :parts="availableParts.heads"
+      <PartSelector :parts="partsStore.parts.heads"
         position="top"
         @partSelected="part => selectedRobot.head = part" />
     </div>
     <div class="middle-row">
-      <PartSelector :parts="availableParts.arms"
+      <PartSelector :parts="partsStore.parts.arms"
         position="left"
         @partSelected="part => selectedRobot.leftArm = part" />
-      <PartSelector :parts="availableParts.torsos"
+      <PartSelector :parts="partsStore.parts.torsos"
         position="middle"
         @partSelected="part => selectedRobot.torso = part" />
-      <PartSelector :parts="availableParts.arms"
+      <PartSelector :parts="partsStore.parts.arms"
         position="right"
         @partSelected="part => selectedRobot.rightArm = part" />
     </div>
     <div class="bottom-row">
-      <PartSelector :parts="availableParts.bases"
+      <PartSelector :parts="partsStore.parts.bases"
         position="bottom"
         @partSelected="part => selectedRobot.base = part"/>
     </div>
@@ -46,12 +46,15 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import CollapsibleSection from '@/shared/CollapsibleSection.vue';
-import availableParts from '../data/parts';
 import PartSelector from './PartSelector.vue';
 
 import { useCartStore } from '../stores/cartStore';
+import { usePartsStore } from '../stores/partsStore';
 
 const cartStore = useCartStore();
+const partsStore = usePartsStore();
+
+partsStore.getParts();
 
 const selectedRobot = {
   head: {},

@@ -1,7 +1,7 @@
 <template>
   <div class="part" :class="position">
     <router-link :to="{ name: 'Parts', params: { partType: selectedPart.type, id: selectedPart.id }}">
-        <img :src="selectedPart.src"
+        <img :src="selectedPart.imageUrl"
           @click="showPartInfo = !showPartInfo"
           @keydown="handleShowPartInfoKeyDown($event)"
           title="arm"
